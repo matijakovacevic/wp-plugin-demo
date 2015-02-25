@@ -1,23 +1,22 @@
 <?php
 /*
-Plugin Name: WordPress Plugin Skeleton
-Plugin URI:  https://github.com/iandunn/WordPress-Plugin-Skeleton
-Description: The skeleton for an object-oriented/MVC WordPress plugin
-Version:     0.4a
-Author:      Ian Dunn
-Author URI:  http://iandunn.name
+Plugin Name: WordPress Plugin demo
+Plugin URI:  https://github.com/matijakovacevic/wp-plugin-demo
+Description: A demo for an object-oriented/MVC WordPress plugin
+Version:     0.1
+Author:      Matija Kovačević
 */
 
 /*
- * This plugin was built on top of WordPress-Plugin-Skeleton by Ian Dunn.
- * See https://github.com/iandunn/WordPress-Plugin-Skeleton for details.
+ * This plugin was built on top of WordPress-Plugin-Demo by Ian Dunn.
+ * See https://github.com/iandunn/WordPress-Plugin-Demo for details.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Access denied.' );
 }
 
-define( 'WPPS_NAME',                 'WordPress Plugin Skeleton' );
+define( 'WPPS_NAME',                 'WordPress Plugin Demo' );
 define( 'WPPS_REQUIRED_PHP_VERSION', '5.3' );                          // because of get_called_class()
 define( 'WPPS_REQUIRED_WP_VERSION',  '3.1' );                          // because of esc_textarea()
 
@@ -62,16 +61,11 @@ function wpps_requirements_error() {
  */
 if ( wpps_requirements_met() ) {
 	require_once( __DIR__ . '/classes/wpps-module.php' );
-	require_once( __DIR__ . '/classes/wordpress-plugin-skeleton.php' );
-	require_once( __DIR__ . '/includes/admin-notice-helper/admin-notice-helper.php' );
-	require_once( __DIR__ . '/classes/wpps-custom-post-type.php' );
-	require_once( __DIR__ . '/classes/wpps-cpt-example.php' );
+	require_once( __DIR__ . '/classes/wordpress-plugin-demo.php' );
 	require_once( __DIR__ . '/classes/wpps-settings.php' );
-	require_once( __DIR__ . '/classes/wpps-cron.php' );
-	require_once( __DIR__ . '/classes/wpps-instance-class.php' );
 
-	if ( class_exists( 'WordPress_Plugin_Skeleton' ) ) {
-		$GLOBALS['wpps'] = WordPress_Plugin_Skeleton::get_instance();
+	if ( class_exists( 'WordPress_Plugin_Demo' ) ) {
+		$GLOBALS['wpps'] = WordPress_Plugin_Demo::get_instance();
 		register_activation_hook(   __FILE__, array( $GLOBALS['wpps'], 'activate' ) );
 		register_deactivation_hook( __FILE__, array( $GLOBALS['wpps'], 'deactivate' ) );
 	}
