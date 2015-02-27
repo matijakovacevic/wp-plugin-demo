@@ -1,1 +1,23 @@
-
+.wpd-calculator-widget button{
+    width: 45px;
+    height: 40px;
+    border: 1px solid black;
+    font-family: inherit;
+    font-size: 100%;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    margin: 1px 0;
+    padding: 0;
+    text-align: center;
+}
+.wpd-calculator-widget button:active {
+    background-color: #ccc;
+}
+.wpd-calculator-widget #calculator-result{
+    text-align: right;
+    width: 140px;
+    padding: 10px;
+    border: 1px solid black;
+    background-color: #BBB;
+}
