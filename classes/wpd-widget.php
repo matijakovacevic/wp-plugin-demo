@@ -1,17 +1,19 @@
 <?php
 
-class WPD_Widget extends WP_Widget {
+class WPD_Widget extends WP_Widget
+{
     const PREFIX     = 'wpd_';
     const VERSION    = '0.1';
 
     /**
      * Sets up the widgets name etc
      */
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct(
             'calculator_widget', // Base ID
-            __( 'Calculator widget', 'text_domain' ), // Name
-            array( 'description' => __( 'Simple JS calculator widget', 'text_domain' ), ) // Args
+            __('Calculator widget', 'text_domain'), // Name
+            array( 'description' => __('Simple JS calculator widget', 'text_domain')) // Args
         );
 
         add_action('init', array(&$this, 'load_resources'));
@@ -23,38 +25,42 @@ class WPD_Widget extends WP_Widget {
      * @param array $args
      * @param array $instance
      */
-    public function widget( $args, $instance ) {
+    public function widget($args, $instance)
+    {
         $this->load_resources();
 
-        $template = realpath(dirname(__FILE__) .'/../views/calculator-widget.php');
+        $template = realpath(dirname(__FILE__).'/../views/calculator-widget.php');
 
-        if(file_exists($template)) require_once $template;
+        if (file_exists($template)) {
+            require_once $template;
+        }
     }
 
     /**
      * Enqueues CSS, JavaScript, etc
      */
-    public function load_resources() {
+    public function load_resources()
+    {
         // only enqueue if widget is active
-        if ( is_active_widget( false, false, $this->id_base, true ) ) {
+        if (is_active_widget(false, false, $this->id_base, true)) {
             wp_register_script(
-                self::PREFIX . 'calculator-widget',
-                plugins_url( 'javascript/calculator-widget.js', dirname( __FILE__ ) ),
+                self::PREFIX.'calculator-widget',
+                plugins_url('javascript/calculator-widget.js', dirname(__FILE__)),
                 array(),
                 self::VERSION,
                 true
             );
 
             wp_register_style(
-                self::PREFIX . 'calculator-widget',
-                plugins_url( 'css/calculator-widget.css', dirname( __FILE__ ) ),
+                self::PREFIX.'calculator-widget',
+                plugins_url('css/calculator-widget.css', dirname(__FILE__)),
                 array(),
                 self::VERSION,
                 'all'
             );
 
-            wp_enqueue_style( self::PREFIX . 'calculator-widget' );
-            wp_enqueue_script( self::PREFIX . 'calculator-widget' );
+            wp_enqueue_style(self::PREFIX.'calculator-widget');
+            wp_enqueue_script(self::PREFIX.'calculator-widget');
         }
     }
 
@@ -63,7 +69,9 @@ class WPD_Widget extends WP_Widget {
      *
      * @param array $instance The widget options
      */
-    public function form( $instance ) {}
+    public function form($instance)
+    {
+    }
 
     /**
      * Processing widget options on save
@@ -71,5 +79,7 @@ class WPD_Widget extends WP_Widget {
      * @param array $new_instance The new options
      * @param array $old_instance The previous options
      */
-    public function update( $new_instance, $old_instance ) {}
+    public function update($new_instance, $old_instance)
+    {
+    }
 }
