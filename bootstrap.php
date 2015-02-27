@@ -60,15 +60,14 @@ function wpd_requirements_error() {
  * The main program needs to be in a separate file that only gets loaded if the plugin requirements are met. Otherwise older PHP installations could crash when trying to parse it.
  */
 if ( wpd_requirements_met() ) {
-	require_once( __DIR__ . '/classes/wpd-module.php' );
+	require_once( __DIR__ . '/classes/wpd-widget.php' );
 	require_once( __DIR__ . '/classes/wordpress-plugin-demo.php' );
-	require_once( __DIR__ . '/classes/wpd-settings.php' );
 
 	if ( class_exists( 'WordPress_Plugin_Demo' ) ) {
-		$GLOBALS['wpd'] = WordPress_Plugin_Demo::get_instance();
+		$GLOBALS['wpd'] = new WordPress_Plugin_Demo();
 		register_activation_hook(   __FILE__, array( $GLOBALS['wpd'], 'activate' ) );
 		register_deactivation_hook( __FILE__, array( $GLOBALS['wpd'], 'deactivate' ) );
 	}
 } else {
-	add_action( 'admin_notices', 'wpd_requirements_error' );
+	wp_die(wpd_requirements_error());
 }
