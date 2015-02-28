@@ -25,7 +25,7 @@ if (! class_exists('WordPress_Plugin_Demo')) {
          */
         public function __construct()
         {
-            $this->register_hook_callbacks();
+            $this->registerHookCallbacks();
         }
 
         /*
@@ -57,16 +57,16 @@ if (! class_exists('WordPress_Plugin_Demo')) {
          *
          * @mvc Controller
          */
-        public function register_hook_callbacks()
+        public function registerHookCallbacks()
         {
             add_action('init', array( $this, 'init' ));
-            add_action('widgets_init', array(&$this, 'register_calculator_widget'));
+            add_action('widgets_init', array(&$this, 'registerCalculatorWidget'));
         }
 
         /**
          * Register the widget
          */
-        public function register_calculator_widget()
+        public function registerCalculatorWidget()
         {
             register_widget('WPD_Widget');
         }
@@ -78,7 +78,8 @@ if (! class_exists('WordPress_Plugin_Demo')) {
                 if (!isset($shortcode['name'])
                     && !isset($shortcode['icon'])
                     && !isset($shortcode['content'])
-                    && !isset($shortcode['action'])) {
+                    && !isset($shortcode['action']))
+                {
                     throw new InvalidArgumentException();
                 }
             }
