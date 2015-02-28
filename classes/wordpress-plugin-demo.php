@@ -76,12 +76,13 @@ if (! class_exists('WordPress_Plugin_Demo')) {
             foreach ($shortcodesConfig as $shortcode) {
                 // check for all attributes
                 if (!isset($shortcode['name'])
-                    && !isset($shortcode['icon'])
                     && !isset($shortcode['content'])
                     && !isset($shortcode['action']))
                 {
                     throw new InvalidArgumentException();
                 }
+
+                add_shortcode($shortcode['name'], $shortcode['action']);
             }
         }
 
@@ -92,18 +93,6 @@ if (! class_exists('WordPress_Plugin_Demo')) {
          */
         public function init()
         {
-            // $this->generateShortcodes(array(
-            // 	array(
-            // 		#
-            // 	)
-            // ));
         }
     } // end WordPress_Plugin_Demo
 }
-
-// $shortCode = [
-// 	'name' => string,
-// 	'icon' => string,
-// 	'content' => bool, // Definira hoće li shortcode imati content i treba li se generirati close tag,
-// 	'action' => function ($atts, $content, $tag) {}
-// ];

@@ -67,6 +67,40 @@ if (wpd_requirements_met()) {
 
     if (class_exists('WordPress_Plugin_Demo')) {
         $GLOBALS['wpd'] = new WordPress_Plugin_Demo();
+        $GLOBALS['wpd']->generateShortcodes(array(
+            array(
+                'name'    => 'video',
+                'content' => true,
+                'action'  => function($atts, $content) {
+                    $cont = ($content !== null) ? '<p>'. $content .'</p>' : '';
+
+                    return <<<VIDEO
+$cont
+<video controls>
+  <source src="movie.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+VIDEO;
+                },
+            ),
+            array(
+                'name'    => 'audio',
+                'content' => true,
+                'action'  => function($atts, $content) {
+                    $cont = ($content !== null) ? '<p>'. $content .'</p>' : '';
+
+                    return <<<AUDIO
+$cont
+<audio controls>
+  <source src="horse.ogg" type="audio/ogg">
+  <source src="horse.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+AUDIO;
+                },
+            )
+        ));
         register_activation_hook(__FILE__, array( $GLOBALS['wpd'], 'activate' ));
         register_deactivation_hook(__FILE__, array( $GLOBALS['wpd'], 'deactivate' ));
     }
