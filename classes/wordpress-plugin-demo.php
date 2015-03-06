@@ -1,13 +1,13 @@
 <?php
+namespace Matijakovacevic;
 
-if (! class_exists('WordPress_Plugin_Demo')) {
-
+if (! class_exists('WordPressPluginDemo')) {
     /**
      * Main / front controller class
      *
-     * WordPress_Plugin_Demo is an object-oriented/MVC base for building WordPress plugins
+     * WordPressPluginDemo is an object-oriented/MVC base for building WordPress plugins
      */
-    class WordPress_Plugin_Demo
+    class WordPressPluginDemo
     {
         const VERSION    = '0.1';
         const PREFIX     = 'wpd_';
@@ -68,7 +68,7 @@ if (! class_exists('WordPress_Plugin_Demo')) {
          */
         public function registerCalculatorWidget()
         {
-            register_widget('WPD_Widget');
+            register_widget('Matijakovacevic\WPDWidget');
         }
 
         public function generateShortcodes(array $shortcodesConfig)
@@ -77,9 +77,8 @@ if (! class_exists('WordPress_Plugin_Demo')) {
                 // check for all attributes
                 if (!isset($shortcode['name'])
                     && !isset($shortcode['content'])
-                    && !isset($shortcode['action']))
-                {
-                    throw new InvalidArgumentException();
+                    && !isset($shortcode['action'])) {
+                        throw new InvalidArgumentException();
                 }
 
                 add_shortcode($shortcode['name'], $shortcode['action']);
@@ -94,5 +93,6 @@ if (! class_exists('WordPress_Plugin_Demo')) {
         public function init()
         {
         }
-    } // end WordPress_Plugin_Demo
+    }
+    // end WordPress_Plugin_Demo
 }

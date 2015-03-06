@@ -1,4 +1,5 @@
 <?php
+
 /*
 Plugin Name: WordPress Plugin demo
 Plugin URI:  https://github.com/matijakovacevic/wp-plugin-demo
@@ -16,9 +17,9 @@ if (! defined('ABSPATH')) {
     die('Access denied.');
 }
 
-define('WPD_NAME',                 'WordPress Plugin Demo');
-define('WPD_REQUIRED_PHP_VERSION', '5.3');                          // because of get_called_class()
-define('WPD_REQUIRED_WP_VERSION',  '3.1');                          // because of esc_textarea()
+define('WPD_NAME', 'WordPress Plugin Demo');
+define('WPD_REQUIRED_PHP_VERSION', '5.3'); // because of get_called_class()
+define('WPD_REQUIRED_WP_VERSION', '3.1'); // because of esc_textarea()
 
 /**
  * Checks if the system requirements are met
@@ -59,14 +60,15 @@ function wpd_requirements_error()
 
 /*
  * Check requirements and load main class
- * The main program needs to be in a separate file that only gets loaded if the plugin requirements are met. Otherwise older PHP installations could crash when trying to parse it.
+ * The main program needs to be in a separate file that only gets loaded if the plugin
+ * requirements are met. Otherwise older PHP installations could crash when trying to parse it.
  */
 if (wpd_requirements_met()) {
     require_once __DIR__.'/classes/wpd-widget.php';
     require_once __DIR__.'/classes/wordpress-plugin-demo.php';
 
-    if (class_exists('WordPress_Plugin_Demo')) {
-        $GLOBALS['wpd'] = new WordPress_Plugin_Demo();
+    if (class_exists('\Matijakovacevic\WordPressPluginDemo')) {
+        $GLOBALS['wpd'] = new \Matijakovacevic\WordPressPluginDemo();
         $GLOBALS['wpd']->generateShortcodes(array(
             array(
                 'name'    => 'video',

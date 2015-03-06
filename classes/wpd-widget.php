@@ -1,6 +1,7 @@
 <?php
+namespace Matijakovacevic;
 
-class WPD_Widget extends WP_Widget
+class WPDWidget extends \WP_Widget
 {
     const PREFIX     = 'wpd_';
     const VERSION    = '0.1';
@@ -16,7 +17,7 @@ class WPD_Widget extends WP_Widget
             array( 'description' => __('Simple JS calculator widget', 'text_domain')) // Args
         );
 
-        add_action('init', array(&$this, 'load_resources'));
+        add_action('init', array(&$this, 'loadResources'));
     }
 
     /**
@@ -27,7 +28,7 @@ class WPD_Widget extends WP_Widget
      */
     public function widget($args, $instance)
     {
-        $this->load_resources();
+        $this->loadResources();
 
         $template = realpath(dirname(__FILE__).'/../views/calculator-widget.php');
 
@@ -39,7 +40,7 @@ class WPD_Widget extends WP_Widget
     /**
      * Enqueues CSS, JavaScript, etc
      */
-    public function load_resources()
+    public function loadResources()
     {
         // only enqueue if widget is active
         if (is_active_widget(false, false, $this->id_base, true)) {
