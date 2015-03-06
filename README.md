@@ -1,35 +1,40 @@
 Wordpress Plugin
 
-Potrebno je kreirati Wordpress Plugin, napisan objektno prema PSR-2 coding standardu.  Plugin mora imati slijedeće funkcionalnosti:
+Create a Wordpress Plugin that abides by PHP PSR-2 coding standard.
+Plugin must have the following functionalities:
 
-###GENERIRANJE SHORTCODOVA
+###SHORTCODES GENERATION
 
-Jedna od funkcionalnosti plugina biti će generiranje shortcodova prema konfiguraciji iz "array" varijable.
+One of the functionalities will be generating shortcodes from the array configuration.
 
-Primjer shortcode konfiguracije (jedna stavka iz liste u konfiguraciji):
+An example of shortcode configuration (one item from the array):
 ```
 $shortCode = [
     'name' => string,
-    'icon' => string
-    'content' => bool // Definira hoće li shortcode imati content i treba li se generirati close tag
+    'content' => bool // defines will the shortcode have content and a close tag
     'action' => function ($atts, $content, $tag) {   // closure
     }
 ];
 ```
 
-PHP Klasa mora pokupiti konfiguraciju te iz toga generirati shortcodove.
+PHP Class has to read the configuration and from it, generate/add the shortcodes.
 
-Za primjer staviti minimalno jedan shortcode u konfiguraciju koji će generirati <video>, <audio> tag i/ili neki drugi HTML5 tag.
+Put minimally one shortcode example into the configuration that will generate <video>, <audio> and/or any other HTML5
+tag.
 
 ###WIDGET
 
-Plugin mora generirati  widget koji će prikazivati jednostavan HTML5 + JS kalkulator u sidebaru templatea. Widget mora biti razvijen po MVC principima.
+Plugin has to generate a widget that will show a simple HTML5+JS calculator in the template sidebar area.
+Widget must adhere to the MVC principles.
 
-    Kalkulator
-    - mora imati osnovne računske operacije (zbrajanje, oduzimanje, množenje i dijeljenje),
-    - mora imati dio za prikaz unosa
-    - gumbove za unos: brojki od 0-9, simbola računskih operacija, gumb „=“ za prikaz rezultata i „C“ za resetiranje/brisanje stanja
-    - mora se slijediti HTML5 sintaksa/sintagma a javascript mora biti objektno orijentiran.
-    - ne smije se koristiti jQuery ili sličan library.
-    - može se koristiti Twitter Bootstrap ili neki drugi CSS framework.
-    - može imati proizvoljan dizajn. (Dizajn nije presudan)
+Calculator
+
+    - must have basic mathematical operations (addition, subtraction, multiplication
+      and division),
+    - must have a display part of the input
+    - buttons for input: numbers 0-9, simbols of mathematical operations, „=“ button
+      for result and a „C“ button for resetting/deleting the state
+    - must adhere HTML5 syntax and javascript must be object-oriented
+    - can not use jQuery or any similar library
+    - can use Twitter Bootstrap or some other CSS framework
+    - can have arbitrary design (Design is not critical)
